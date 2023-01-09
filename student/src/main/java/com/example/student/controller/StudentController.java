@@ -41,19 +41,29 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(addedStudent);
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Student> updateStudentById(@PathVariable Long id, @RequestBody Student student) {
         Student updatedStudent = studentService.updateStudentById(id, student);
         return ResponseEntity.status(HttpStatus.OK).body(updatedStudent);
     }
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public ResponseEntity<Student> updateStudentByIdRequestParam(@RequestParam Long id, @RequestBody Student student) {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.updateStudentById(id, student));
     }
 
     @GetMapping("/average")
-    public ResponseEntity<List<Student>> getStudentsWithAverage(){
+    public ResponseEntity<List<Student>> getStudentsWithAverage() {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentsWithAverage());
+    }
+
+    @GetMapping("/getStudentsOutstanding")
+    public ResponseEntity<List<Student>> getStudentsOutstanding() {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentsOutstanding());
+    }
+
+    @GetMapping("/getStudentsEminent")
+    public ResponseEntity<List<Student>> getStudentsEminent() {
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentsEminent());
     }
 }
