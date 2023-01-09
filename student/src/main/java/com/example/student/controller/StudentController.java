@@ -66,4 +66,10 @@ public class StudentController {
     public ResponseEntity<List<Student>> getStudentsEminent() {
         return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentsEminent());
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Student> deleteUserById(@PathVariable Long id) {
+        studentService.deleteUserById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(studentService.getStudentById(id));
+    }
 }
